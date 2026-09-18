@@ -1,0 +1,43 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+.env
+.env.*
+!.env.example
+
+.streamlit/secrets.toml
+
+*.log
+
+# Compiled Fortran/build artifacts
+*.exe
+*.o
+*.obj
+*.mod
+*.dll
+
+# Solver-generated files
+propan_solver/runs/
+propan_solver/test_run/
+propan_solver/build/
+
+# Downloaded compiler/archive files
+*.zip
+*.7z
+*.tar
+*.gz
+
+# External PROPAN repository
+external/PROPAN/
+
+# IDE/local files
+.vscode/
+.idea/
+
+# Local build artifacts
+build/
+
+propan_solver/patched_src/
+propan_solver/stubs/
