@@ -68,7 +68,7 @@ SOURCES = [
     "Solve/SolveWake.f90",
     # WakeAlign
     "WakeAlign/wakealign1.f90",
-    r"D:\PROPAN_AI_Prototype\propan_solver\stubs\wakealign2.f90",  # stub
+    str(PROJECT_ROOT / "propan_solver" / "stubs" / "wakealign2.f90"),  # stub
     "WakeAlign/nozzledef.f90",
     "WakeAlign/geoduct37.f90",
     "WakeAlign/bladewakedisp.f90",
