@@ -70,7 +70,7 @@ def ask_ai(question: str, context: str) -> str:
             api_key=gemini_key,
             base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
         )
-        model = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+        model = os.getenv("GEMINI_MODEL", "gemini-3.6-flash")
     else:
         # Fallback to OpenAI if configured
         client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
