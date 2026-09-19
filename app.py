@@ -415,7 +415,7 @@ st.markdown("---")
 st.markdown("### AI ENGINEERING ASSISTANT")
 
 if not is_ai_configured():
-    st.info("💡 **AI assistant is not configured.** Set the `OPENAI_API_KEY` environment variable to enable AI interpretation.")
+    st.info("💡 **AI assistant is not configured.** Set the `GEMINI_API_KEY` (or `OPENAI_API_KEY`) environment variable to enable AI interpretation.")
 else:
     st.markdown("Ask the AI to interpret the current PROPAN performance data.")
     

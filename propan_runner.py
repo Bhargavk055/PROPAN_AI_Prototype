@@ -50,11 +50,15 @@ def run_propan_custom_j(j_value: float, timeout_sec: int = 120) -> pd.DataFrame:
     with open(run_dir / "PROPAN.INP", "w") as f:
         f.write(new_inp)
 
-    # Set environment for MinGW DLLs (if specified in env)
+    # Set environment for MinGW DLLs (if specified in env or exists locally)
     env = os.environ.copy()
     mingw_bin = os.environ.get("MINGW_BIN")
+    if not mingw_bin and Path(r"D:\mingw64\bin").exists():
+        mingw_bin = r"D:\mingw64\bin"
+        
     if mingw_bin:
         env["PATH"] = str(mingw_bin) + ";" + env.get("PATH", "")
+
 
     # Execute PROPAN solver
     res = subprocess.run(

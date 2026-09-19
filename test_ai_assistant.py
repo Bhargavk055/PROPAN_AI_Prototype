@@ -8,8 +8,9 @@ from ai_assistant import is_ai_configured, build_analysis_context, ask_ai
 def main():
     print("Testing AI Assistant Module...")
     
-    # Temporarily remove OPENAI_API_KEY from environment to test fallback
-    original_key = os.environ.pop("OPENAI_API_KEY", None)
+    # Temporarily remove API keys from environment to test fallback
+    original_openai = os.environ.pop("OPENAI_API_KEY", None)
+    original_gemini = os.environ.pop("GEMINI_API_KEY", None)
     
     # Test 1: is_ai_configured works
     configured = is_ai_configured()
@@ -33,8 +34,10 @@ def main():
     print("TEST 3 PASS: ask_ai handles missing API key gracefully.")
     
     # Restore key if it existed
-    if original_key:
-        os.environ["OPENAI_API_KEY"] = original_key
+    if original_openai:
+        os.environ["OPENAI_API_KEY"] = original_openai
+    if original_gemini:
+        os.environ["GEMINI_API_KEY"] = original_gemini
         
     print("\nALL AI TESTS PASSED")
 

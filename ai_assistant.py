@@ -4,8 +4,8 @@ from openai import OpenAI
 from openai import OpenAIError
 
 def is_ai_configured() -> bool:
-    """Check if the OpenAI API key is configured."""
-    return bool(os.getenv("OPENAI_API_KEY"))
+    """Check if the AI API key is configured."""
+    return bool(os.getenv("GEMINI_API_KEY")) or bool(os.getenv("OPENAI_API_KEY"))
 
 def build_analysis_context(
     df: pd.DataFrame,
@@ -62,10 +62,19 @@ def ask_ai(question: str, context: str) -> str:
     Handles missing keys and API errors gracefully.
     """
     if not is_ai_configured():
-        return "AI assistant is not configured. Set OPENAI_API_KEY to enable AI interpretation."
+        return "AI assistant is not configured. Set GEMINI_API_KEY to enable AI interpretation."
         
-    client = OpenAI() # Implicitly reads OPENAI_API_KEY from environment
-    model = os.getenv("OPENAI_MODEL", "gpt-3.5-turbo") # Default to a cost-efficient model
+    gemini_key = os.getenv("GEMINI_API_KEY")
+    if gemini_key:
+        client = OpenAI(
+            api_key=gemini_key,
+            base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+        )
+        model = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+    else:
+        # Fallback to OpenAI if configured
+        client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        model = os.getenv("OPENAI_MODEL", "gpt-3.5-turbo")
     
     system_prompt = (
         "You are an engineering analysis assistant for a small PROPAN potential-flow prototype.\n\n"

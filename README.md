@@ -88,10 +88,10 @@ The application will launch at `http://localhost:8501`.
 
 ## Optional AI Assistant Configuration
 
-To enable the AI engineering assistant, set your OpenAI API key before starting Streamlit:
+To enable the AI engineering assistant, set your Gemini API key before starting Streamlit:
 
 ```powershell
-$env:OPENAI_API_KEY="YOUR_API_KEY"
+$env:GEMINI_API_KEY="YOUR_API_KEY"
 ```
 
 ## Automated Testing
